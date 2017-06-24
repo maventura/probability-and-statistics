@@ -1,0 +1,71 @@
+
+
+
+
+\begin{section}{Ejercicio 3}
+Utilizando $b = 1$, genere una muestra de tama;o $n = 15$. Calcule cada uno de los estimadores con la muestra obtenida y reportar el valor de cada estimador y su error.
+
+\begin{subsection}{Implementacion}
+Comenzaremos implementando, como funcion, los dos estimadores restantes.
+
+
+\begin{verbatim}
+Bmom<-function(X)
+{
+mean = 0
+  for(i in 1:length(X))
+    { 
+      mean = mean + X[i];
+    }
+    mean = mean/length(X)
+  return(2*mean)
+}
+
+
+
+Bmv<-function(X)
+{
+  return(max(X))
+}
+\end{verbatim}
+
+
+Bmom es la forma algoritmica en R de la expresion del estimador calculado en el primer punto, mientras que la funcion nativa de R, max, nos provee de una forma facil para calcular el estimador Bmv. Se la deja aun asi dentro de una funcion por consistencia.\\
+\\
+A continuacion se muestra un ejemplo de una corrida en la cual se utiliza la funcion runif, nativa de R, la cual genera numeros flotantes aleatorios siguiendo una distribucion uniforme, para generar la muestra. Luego de eso realiza  la estimacion de b mediante Bmom, Bmv y Bmed.
+
+
+\begin{verbatim}
+
+> X = runif(15, 0.0, 1.0)
+> X
+ [1] 0.85100376 0.35369725 0.37211795 0.02894966 0.80028852
+     0.73197841 0.24412642 0.84706643 0.74270632 0.85146423
+     0.65617966 0.11617666 0.11925780 0.25546167 0.53364961
+> Bmed(X)
+[1] 0.7442359
+> Bmv(X)
+[1] 0.8514642
+> Bmom(X)
+[1] 1.00055
+
+
+\end{verbatim}
+
+Utilizaremos ahora R para calcular tambien los errores
+
+\begin{verbatim}
+> abs(1-Bmom(X))
+[1] 0.0005499117
+> abs(1-Bmv(X))
+[1] 0.1485358
+> abs(1-Bmed(X))
+[1] 0.2557641
+> 
+\end{verbatim}
+
+Como puede verse, los valores obtenidos por los estimadores Bmv, Bmom y Bmed son 0.8514642, 1.00055 y 0.7442359 respectivamente, y sus errores son 0.1485358, 0.0005499117 y 0.2557641.
+
+
+\end{subsection}
+\end{section}
