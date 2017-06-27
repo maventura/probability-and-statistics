@@ -110,10 +110,10 @@ Se obtiene así:\\
 (ECMBmom, ECMBmed, ECMBmv) = (2.677839, 0.3398272, 147.3337)\\
 ~\\
 Siendo los valores anteriores:\\
- (ECMBmom, ECMBmed, ECMBmv) = (0.02233238, 0.07184158, 0.007403514).
- \\
+ (ECMBmom, ECMBmed, ECMBmv) = (0.02233238, 0.07184158, 0.007403514).\\
  ~\\
-
+En este caso vuelve a observarse como cambia el valor en $B_{mv}$. Cabe preguntarse que estimador es mejor para este caso.
+La respuesta es que si estamos seguros de que tpodas nuestras mediciones fueron realizadas correctamente, $B_{mv}$ es capaz de utilizar estos datos que parecen outliers para dar una mejor respuesta, pero en el caso general, en el que se espera que hayan errores de medicion, esta estimador es demasiado sensible a outliers. En este caso el estimador que mejor se comporta es aquel que menos utiliza la informacion de los outliers, es decir $B_{med}$. Esto puede verse reflejado en su menor error cuadratico medio.
 
 \end{subsection}
 \end{section}
