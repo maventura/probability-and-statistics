@@ -1,0 +1,33 @@
+
+
+
+
+\begin{section}{Ejercicio 8}
+Calcular los estimadores en la siguiente muestra. ¿Observa algo extraño? ¿a que cree que se
+debe? \\
+~\\
+0,917 0,247 0,384 0,530 0,798 0,912 0,096 0,684 0,394 20,1 0,769 0,137 0,352 0,332 0,670
+
+\begin{subsection}{Implementacion}
+
+
+Se utiliza el siguiente codigo para generar los vectores.
+\begin{verbatim}
+
+> vals = double();
+> vals <- c(0.917, 0.247, 0.384, 0.530, 0.798, 0.912, 0.096, 0.684, 0.394, 20.1, 0.769, 0.137, 0.352, 0.332, 0.670)
+> Rmed = Bmed(vals)
+> Rmom = Bmom(vals)
+> Rmv = Bmv(vals)
+> print(Rmom)
+[1] 3.642933
+> print(Rmv)
+[1] 20.1
+> print(Rmed)
+[1] 0.192
+\end{verbatim}
+Los resultados de los estimadores son (Bmom, Bmed, Bmv) = (3.642933, 0.192, 20.1). Es esperable que esto suceda ya que el estimador $B_{mv}$, estima utilizando el maximo. Si este fuera un outlier resultante de un error de medicion, nos estaria dando un muy mal resultado. Lo que esto nos dice es que este metodo es mas sensible a errores de medicion.
+
+
+\end{subsection}
+\end{section}

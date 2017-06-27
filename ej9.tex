@@ -1,0 +1,119 @@
+
+
+
+
+\begin{section}{Ejercicio 4}
+Aproximar sesgo, varianza y error cuadrático medio para los estimadores bajo el siguiente
+escenario con datos atípicos:
+Una muestra uniforme con $b = 1$ y $n = 15$ que con probabilidad $p = 0,05$ un elemento de la
+muestra viene multiplicado por $100$ (coma corrida dos lugares a la derecha). ¿Que estimador
+prefiere en este escenario?
+Aclarción: Para generar una muestra en estas condiciones basta generar una muestra como
+antes y luego decidir con probabilidad $ = 0,05$ multiplicar por $100$ al primer elemento de la
+muestra.
+
+\begin{subsection}{Implementacion}
+
+
+
+\begin{verbatim}
+	b = 1;
+	n = 15;
+	nrep = 2000;
+	Bmoms = double()
+	Bmeds = double()
+	Bmvs = double()
+	X = double()
+	p = 0.05;
+	acumP = 0;
+	for (i in 1:nrep){
+		acumP = acumP+p;
+
+		X = runif(n, 0.0, b);
+		if(acumP >= 1){
+			acumP = 0;
+			X[1] = X[1]*100;
+		}
+		Bmoms[i] <- Bmom(X);
+		Bmeds[i] <- Bmed(X);
+		Bmvs[i] <- Bmv(X);
+	}
+	momMean = mean(Bmoms);
+	medMean = mean(Bmeds);
+	mvMean = mean(Bmvs);
+
+	momErr = abs(b-momMean);
+	medErr = abs(b-medMean);
+	mvErr = abs(b-mvMean);
+
+\end{verbatim}
+Los resultados conseguidos son los siguientes:
+
+\begin{verbatim}
+
+> print(momErr)
+[1] 0.3071968
+> print(medErr)
+[1] 0.01177621
+> print(mvErr)
+[1] 2.20998
+> 
+
+
+\end{verbatim}
+Aquí vemos que  (momErr, medErr, mvErr) = (0.3071968, 0.01177621, 2.20998).\\
+recordemos que para una muestra uniforme, los resultados habian sido (momErr, medErr, mvErr) = (0.0002888454, 0.1260778, 0.06227115).\\
+Sucede algo parecido a lo visto en el punto anterior. El hecho de que hjaya un outlier, perjudica la medida del estimador de maxima verosimilitud (en caso de ser un error).
+
+Las varianzas muestrales de los estimadores son las siguientes:
+
+\begin{verbatim}
+
+> momVar = var(Bmoms)
+> medVar = var(Bmeds)
+> mvVar = var(Bmvs)
+> print(momVar)
+[1] 2.58347
+> print(medVar)
+[1] 0.3396885
+> print(mvVar)
+[1] 142.4497
+> 
+
+\end{verbatim}
+
+La aproximacion obtenida para varianza da: \\
+(momVar, medVar, mvVar) = (2.58347, 0.3396885, 142.4497)\\
+Recordemos que los valores para muestras uniformes eran:\\
+(momVar, medVar, mvVar) = (0.02233229, 0.05594595, 0.003525818)\\
+Nuevamente vemos como el estimador de maxima verosimilitud es el mas afectado por estos nuevos valores.
+Extrañamente, la varianza en el estimador de momentos se redujo.
+
+
+
+Se utilizará esta formula de la aproximacion del ECM como antes:
+
+\begin{verbatim}
+> ECMBmom = momVar + (momErr^2);
+> ECMBmed = medVar + (medErr^2);
+> ECMBmv  = mvVar + (mvErr^2);
+> print(ECMBmom)
+[1] 2.677839
+> print(ECMBmed)
+[1] 0.3398272
+> print(ECMBmv)
+[1] 147.3337
+> 
+\end{verbatim}
+~\\
+Se obtiene así:\\
+(ECMBmom, ECMBmed, ECMBmv) = (2.677839, 0.3398272, 147.3337)\\
+~\\
+Siendo los valores anteriores:\\
+ (ECMBmom, ECMBmed, ECMBmv) = (0.02233238, 0.07184158, 0.007403514).
+ \\
+ ~\\
+
+
+\end{subsection}
+\end{section}
