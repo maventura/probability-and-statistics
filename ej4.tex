@@ -1,0 +1,101 @@
+
+
+
+
+\begin{section}{Ejercicio 4}
+Hacer una simulación para obtener el sesgo, varianza y error cuadratico medio (ECM) de
+cada uno de los estimadores.
+
+\begin{subsection}{Implementacion}
+
+
+
+\begin{verbatim}
+b = 1;
+n = 15;
+nrep = 1000;
+Bmoms = double()
+Bmeds = double()
+Bmvs = double()
+X = double()
+
+for (i in 1:nrep){
+ X = runif(n, 0.0, b);
+ val1 = 
+ Bmoms[i] <- Bmom(X);
+ Bmeds[i] <- Bmed(X);
+ Bmvs[i] <- Bmv(X);
+}
+momMean = mean(Bmoms);
+medMean = mean(Bmeds);
+mvMean = mean(Bmvs);
+
+momErr = abs(b-momMean);
+medErr = abs(b-medMean);
+mvErr = abs(b-mvMean);
+
+\end{verbatim}
+Los resultados conseguidos son los siguientes:
+
+\begin{verbatim}
+
+> print(momErr)
+[1] 0.0002888454
+> print(medErr)
+[1] 0.1260778
+> print(mvErr)
+[1] 0.06227115
+> 
+\end{verbatim}
+Como puede verse, (momErr, medErr, mvErr) = (0.0002888454, 0.1260778, 0.06227115).\\
+\\
+Las varianzas muestrales de los estimadores son las siguientes:
+
+
+\begin{verbatim}
+
+> momVar = var(Bmoms)
+> medVar = var(Bmed)
+Error: is.atomic(x) is not TRUE
+> medVar = var(Bmeds)
+> mvVar = var(Bmvs)
+> print(momVar)
+[1] 0.02233229
+> print(medVar)
+[1] 0.05594595
+> print(mvVar)
+[1] 0.003525818
+> 
+
+\end{verbatim}
+
+Por lo tanto, al usar la varianza muestral de los estimadores  Bmom, Bmed y Bmv, la aproximacion obtenida para varianza da: \\
+\center{(momVar, medVar, mvVar) = (0.02233229, 0.05594595, 0.003525818)}
+
+
+La formula que relaciona el error cuadratico medio con el sesgo y la varianza es \\
+~\\
+~\\
+$ECM_B(\hat{B}) = V_B(\hat{B}) + (E_B(\hat{B}) - B)^2$\\
+~\\
+~\\
+Utilizaremos esta formula para calcular, para cada estimador, el ECM como se muestra en el siguiente codigo:
+
+\begin{verbatim}
+> ECMBmom = momVar + (momErr^2);
+> ECMBmed = medVar + (medErr^2);
+> ECMBmv  = mvVar + (mvErr^2);
+> print(ECMBmom)
+[1] 0.02233238
+> print(ECMBmed)
+[1] 0.07184158
+> print(ECMBmv)
+[1] 0.007403514
+> 
+\end{verbatim}
+
+Como puede verse, los errores cuaddraticos medios, calculados asi, resultan ser  (ECMBmom, ECMBmed, ECMBmv) = (0.02233238, 0.07184158, 0.007403514).
+
+
+\end{subsection}
+\end{section}

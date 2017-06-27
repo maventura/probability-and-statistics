@@ -1,0 +1,82 @@
+
+
+
+
+\begin{section}{Ejercicio 5}
+Implemente las funciones simulacion mv(b, n), simulacion mom(b, n) y simulacion med(b, n)
+que devuelve la aproximación del ECM de cada uno de los estimadores correspondientes al b
+y al n.
+
+\begin{subsection}{Implementacion}
+
+
+
+\begin{verbatim}
+simulacion_mom<-function(b,n)
+{
+
+nrep = 1000;
+Bmoms = double();
+X = double();
+
+for (i in 1:nrep){
+ X = runif(n, 0.0, b);
+ Bmoms[i] <- Bmom(X);
+}
+
+momMean = mean(Bmoms);
+momErr = abs(b-momMean);
+momVar = var(Bmoms)
+ECMBmom = momVar + (momErr^2);
+return(ECMBmom);
+}
+\end{verbatim}
+
+
+\begin{verbatim}
+simulacion_med<-function(b,n)
+{
+
+nrep = 1000;
+Bmeds = double();
+X = double();
+
+for (i in 1:nrep){
+ X = runif(n, 0.0, b);
+ Bmeds[i] <- Bmed(X);
+
+}
+
+medMean = mean(Bmeds);
+medErr = abs(b-medMean);
+medVar = var(Bmeds);
+ECMBmed = medVar + (medErr^2);
+return(ECMBmed);
+}
+\end{verbatim}
+
+
+\begin{verbatim}
+simulacion_mv<-function(b,n)
+{
+
+nrep = 1000;
+Bmvs = double();
+X = double();
+
+for (i in 1:nrep){
+ X = runif(n, 0.0, b);
+ Bmvs[i] <- Bmv(X);
+}
+
+mvMean = mean(Bmvs);
+mvErr = abs(b-mvMean);
+mvVar = var(Bmvs);
+ECMBmv  = mvVar + (mvErr^2);
+return(ECMBmv);
+}
+\end{verbatim}
+
+
+\end{subsection}
+\end{section}
