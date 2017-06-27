@@ -3,10 +3,10 @@
 
 
 \begin{section}{Ejercicio 3}
-Utilizando $b = 1$, genere una muestra de tama;o $n = 15$. Calcule cada uno de los estimadores con la muestra obtenida y reportar el valor de cada estimador y su error.
+Utilizando $b = 1$, genere una muestra de tamaño $n = 15$. Calcule cada uno de los estimadores con la muestra obtenida y reporte el valor y error de cada estimador.
 
-\begin{subsection}{Implementacion}
-Comenzaremos implementando, como funcion, los dos estimadores restantes.
+\begin{subsection}{Resolución}~\\
+Comenzaremos implementando, como función, los dos estimadores restantes.
 
 
 \begin{verbatim}
@@ -21,8 +21,6 @@ mean = 0
   return(2*mean)
 }
 
-
-
 Bmv<-function(X)
 {
   return(max(X))
@@ -30,9 +28,9 @@ Bmv<-function(X)
 \end{verbatim}
 
 
-Bmom es la forma algoritmica en R de la expresion del estimador calculado en el primer punto, mientras que la funcion nativa de R, max, nos provee de una forma facil para calcular el estimador Bmv. Se la deja aun asi dentro de una funcion por consistencia.\\
+Bmom es la forma algorítmica en R de la expresión del estimador calculado en el primer punto, mientras que la función nativa de R, max, nos provee de una forma fácil para calcular el estimador Bmv. Se la deja aun así dentro de una función por consistencia.\\
 \\
-A continuacion se muestra un ejemplo de una corrida en la cual se utiliza la funcion runif, nativa de R, la cual genera numeros flotantes aleatorios siguiendo una distribucion uniforme, para generar la muestra. Luego de eso realiza  la estimacion de b mediante Bmom, Bmv y Bmed.
+A continuación se muestra un ejemplo de una corrida en la cual se utiliza la función runif, nativa de R, la cual genera números flotantes aleatorios siguiendo una distribución uniforme, para generar la muestra. Luego de eso realiza  la estimación de b mediante Bmom, Bmv y Bmed.
 
 
 \begin{verbatim}
@@ -52,7 +50,7 @@ A continuacion se muestra un ejemplo de una corrida en la cual se utiliza la fun
 
 \end{verbatim}
 
-Utilizaremos ahora R para calcular tambien los errores
+Utilizaremos ahora R para calcular también los errores
 
 \begin{verbatim}
 > abs(1-Bmom(X))

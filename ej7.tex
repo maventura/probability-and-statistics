@@ -1,15 +1,9 @@
-
-
-
-
-\begin{section}{Ejercicio 6}
-Realizar un grafico de los ECM con b = 1 y n = 15, 30, 50, 100, 150, 200 ¿Que observa? ¿Que
+\begin{section}{Ejercicio 7}
+Realizar un gráfico de los ECM con $b = 1$ y $n =$ 15, 30, 50, 100, 150, 200 ¿Que observa? ¿Que
 estimador elige? ¿Que sospecha sobre la consistencia de los estimadores?
 
-\begin{subsection}{Implementacion}
-
-
-Se utiliza el siguiente codigo para generar los vectores.
+\begin{subsection}{Implementación}~\\
+Se utiliza el siguiente código para generar los vectores.
 \begin{verbatim}
 b = 1;
 ni = double();
@@ -27,7 +21,7 @@ for(i in 1:niLen){
 
 \end{verbatim}
 
-Y luego creamos los graficos compuestos con sl siguiente codigo:
+se crean luego los gráficos compuestos con el siguiente código:
 
 \begin{verbatim}
 
@@ -35,10 +29,14 @@ Y luego creamos los graficos compuestos con sl siguiente codigo:
 > points(ni, medSims , col="red")
 > points(ni, mvSims , col="green")
 > 
-
 \end{verbatim}
 
-Se obtiene el siguiente grafico, donde los puntos de color negro son los de $B_{mom}$, los de color rojo los de $B_{med}$, y los de color verde los de $B_{mv}$.
+
+\end{subsection}
+\newpage
+\begin{subsection}{Resultados}~\\
+
+Se obtiene el siguiente gráfico, donde los puntos de color negro son los de $B_{mom}$, los de color rojo los de $B_{med}$, y los de color verde los de $B_{mv}$.\\
 
 
 Error cuadratico medio de $B_{mom}$
@@ -48,9 +46,6 @@ Error cuadratico medio de $B_{mom}$
 \end{figure}
 ~\\
 ~\\
-
-
-
-Nuevamente se observa una convergencia mas rapida para el estimador de maxima verosimilitud. Ademas, en cuanto a la consistencia, el unico estimador que converge al valor real, al menos con $n<200$, es el de maxima verosimilitud, con lo cual es el unico que parece consistente.
+Nuevamente se observa una convergencia mas rápida para el estimador de máxima verosimilitud. Ademas, en cuanto a la consistencia, el único estimador que converge al valor real, al menos con $n<200$, es el de máxima verosimilitud, con lo cual es el único que parece consistente.
 \end{subsection}
 \end{section}

@@ -3,12 +3,10 @@
 
 
 \begin{section}{Ejercicio 4}
-Hacer una simulación para obtener el sesgo, varianza y error cuadratico medio (ECM) de
+Hacer una simulación para obtener el sesgo, varianza y error cuadrático medio (ECM) de
 cada uno de los estimadores.
 
-\begin{subsection}{Implementacion}
-
-
+\begin{subsection}{Sesgo}~\\
 
 \begin{verbatim}
 b = 1;
@@ -47,8 +45,13 @@ Los resultados conseguidos son los siguientes:
 [1] 0.06227115
 > 
 \end{verbatim}
-Como puede verse, (momErr, medErr, mvErr) = (0.0002888454, 0.1260778, 0.06227115).\\
-\\
+como puede verse, los resultados fueron:\\
+~\\
+ (momErr, medErr, mvErr) = (0.0002888454, 0.1260778, 0.06227115).\\
+~\\
+\end{subsection}
+\begin{subsection}{Varianza}~\\
+
 Las varianzas muestrales de los estimadores son las siguientes:
 
 
@@ -69,17 +72,21 @@ Error: is.atomic(x) is not TRUE
 
 \end{verbatim}
 
-Por lo tanto, al usar la varianza muestral de los estimadores  Bmom, Bmed y Bmv, la aproximacion obtenida para varianza da: \\
-\center{(momVar, medVar, mvVar) = (0.02233229, 0.05594595, 0.003525818)}
+Por lo tanto, al usar la varianza muestral de los estimadores  Bmom, Bmed y Bmv, la aproximación obtenida para varianza da: \\
+~\\
+\center{(momVar, medVar, mvVar) = (0.02233229, 0.05594595, 0.003525818)}~\\
+~\\
 
+\end{subsection}
+\begin{subsection}{Error cuadrático medio}~\\
 
-La formula que relaciona el error cuadratico medio con el sesgo y la varianza es \\
+La formula que relaciona el error cuadrático medio con el sesgo y la varianza es \\
 ~\\
 ~\\
 $ECM_B(\hat{B}) = V_B(\hat{B}) + (E_B(\hat{B}) - B)^2$\\
 ~\\
 ~\\
-Utilizaremos esta formula para calcular, para cada estimador, el ECM como se muestra en el siguiente codigo:
+Utilizaremos esta formula para calcular, para cada estimador, el ECM como se muestra en el siguiente código:
 
 \begin{verbatim}
 > ECMBmom = momVar + (momErr^2);
@@ -94,8 +101,9 @@ Utilizaremos esta formula para calcular, para cada estimador, el ECM como se mue
 > 
 \end{verbatim}
 
-Como puede verse, los errores cuaddraticos medios, calculados asi, resultan ser  (ECMBmom, ECMBmed, ECMBmv) = (0.02233238, 0.07184158, 0.007403514).
-
-
+Como puede verse, los errores cuadráticos medios, calculados así, resultan ser:\\
+~\\
+(ECMBmom, ECMBmed, ECMBmv) = (0.02233238, 0.07184158, 0.007403514).
+~\\
 \end{subsection}
 \end{section}
